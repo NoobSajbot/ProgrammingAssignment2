@@ -2,9 +2,9 @@
 ## functions do
 
 ## Write a short comment describing this function:
-## the function provides the method to create a special object
+## the function can be used to create a special object
 ## containing a matrix and caching its inverse.
-## The methods provided allow to read and write the matrix and its 
+## The methods allow to read and write the matrix and its 
 ## inverse for this object.
 
 
@@ -28,7 +28,6 @@ makeCacheMatrix <- function(x = matrix()) {
   ## get the inverse of the matrix
   getinv <- function() inv
   
-  
   ## return the list
   list(set = set, get = get,
        setinv = setinv,
@@ -48,28 +47,23 @@ makeCacheMatrix <- function(x = matrix()) {
 cacheSolve <- function(x, ...) {
   
   ## get the inverse of the matrix stored in the object x
-  
   inv <- x$getinv()
   
   ## If the inverse is not NULL return the inverse cached 
   ## which was read using getinv()
-
   if(!is.null(inv)) {
     message("getting cached data")
     return(inv)
   }
   
   ## here the inverse was NULL, so it must be computed using solve()
-  
   data <- x$get()
   inv <- solve(data, ...)
   
   ## update the inverse in x
-  
   x$setinv(inv)
   
   ##return the inverse
-  
   inv
   
 }
